@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Blagues Aléatoires</title>
+    <meta name="description" content="Générateur de blagues aléatoires avec catégories, favoris et mode sombre">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">🎭 JokeGen</h1>
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Controls Section -->
+            <section class="controls">
+                <div class="control-group">
+                    <label for="categorySelect" class="control-label">Catégorie</label>
+                    <select id="categorySelect" class="category-select">
+                        <option value="any">Toutes les catégories</option>
+                        <option value="programming">Programmation</option>
+                        <option value="misc">Divers</option>
+                        <option value="dark">Humour noir</option>
+                        <option value="pun">Jeux de mots</option>
+                        <option value="spooky">Effrayant</option>
+                        <option value="christmas">Noël</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" id="newJokeBtn">
+                    <span class="btn-icon">🎲</span>
+                    Nouvelle blague
+                </button>
+            </section>
+
+            <!-- Joke Display -->
+            <section class="joke-section">
+                <div class="joke-card" id="jokeCard">
+                    <div class="joke-loading" id="jokeLoading">
+                        <div class="spinner"></div>
+                        <p>Chargement d'une blague...</p>
+                    </div>
+                    <div class="joke-content" id="jokeContent" style="display: none;">
+                        <div class="joke-text">
+                            <p class="joke-setup" id="jokeSetup"></p>
+                            <p class="joke-delivery" id="jokeDelivery"></p>
+                            <p class="joke-single" id="jokeSingle"></p>
+                        </div>
+                        <div class="joke-actions">
+                            <button class="action-btn" id="favoriteBtn" title="Ajouter aux favoris">
+                                <span class="icon">⭐</span>
+                            </button>
+                            <button class="action-btn" id="shareBtn" title="Partager">
+                                <span class="icon">🔗</span>
+                            </button>
+                            <button class="action-btn" id="copyBtn" title="Copier">
+                                <span class="icon">📋</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="joke-error" id="jokeError" style="display: none;">
+                        <div class="error-icon">😕</div>
+                        <p class="error-message">Oops ! Impossible de charger une blague.</p>
+                        <button class="btn btn-secondary" id="retryBtn">Réessayer</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Navigation Tabs -->
+            <nav class="tabs" id="tabsNav">
+                <button class="tab-btn active" data-tab="history">
+                    <span class="tab-icon">📚</span>
+                    Historique
+                </button>
+                <button class="tab-btn" data-tab="favorites">
+                    <span class="tab-icon">⭐</span>
+                    Favoris
+                </button>
+            </nav>
+
+            <!-- Tab Content -->
+            <section class="tab-content">
+                <!-- History Tab -->
+                <div class="tab-panel active" id="historyTab">
+                    <div class="list-header">
+                        <h3>Dernières blagues</h3>
+                        <button class="btn btn-small" id="clearHistoryBtn">Effacer</button>
+                    </div>
+                    <div class="joke-list" id="historyList">
+                        <div class="empty-state">
+                            <div class="empty-icon">📜</div>
+                            <p>Aucune blague dans l'historique</p>
+                            <p class="empty-subtitle">Générez votre première blague !</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Favorites Tab -->
+                <div class="tab-panel" id="favoritesTab">
+                    <div class="list-header">
+                        <h3>Blagues favorites</h3>
+                        <button class="btn btn-small" id="clearFavoritesBtn">Effacer</button>
+                    </div>
+                    <div class="joke-list" id="favoritesList">
+                        <div class="empty-state">
+                            <div class="empty-icon">⭐</div>
+                            <p>Aucune blague favorite</p>
+                            <p class="empty-subtitle">Ajoutez vos blagues préférées !</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 JokeGen - Générateur de blagues aléatoires</p>
+            <p class="footer-api">Propulsé par <a href="https://jokeapi.dev" target="_blank">JokeAPI</a></p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
